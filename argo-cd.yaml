@@ -1,0 +1,32 @@
+apiVersion: arhoproj.io/v1aplha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+
+ 
+
+spec:
+  project: default
+
+ 
+
+  source:
+    repoURL: https://github.com/Aniketkale12345/Argo-cd.git
+    targetRevision: HEAD
+    path: dev
+  destination:
+    server: "minikube cluster"(example: https://kubernetes.default.svc)
+    namespace: myapp
+
+ 
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace:true
+
+ 
+
+    automated:
+       selfHeal: true
+       prune: true
